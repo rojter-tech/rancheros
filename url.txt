@@ -1,0 +1,1 @@
+https://rojter.tech/coreos/cloud-init.config
