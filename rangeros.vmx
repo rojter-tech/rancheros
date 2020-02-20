@@ -1,2 +1,3 @@
 guestinfo.hostname = "ranchermanager"
 guestinfo.cloud-init.config.url = "https://rojter.tech/coreos/cloud-init.config"
+guestinfo.cloud-init.config.url = "https://rojter.tech/coreos/cloud-config.yml"

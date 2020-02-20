@@ -1,1 +1,1 @@
-https://rojter.tech/coreos/cloud-init.config
+https://rojter.tech/coreos/cloud-config.yml
