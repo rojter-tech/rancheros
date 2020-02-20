@@ -19,7 +19,7 @@
   <VirtualSystem ovf:id="vm">
     <Info>A virtual machine</Info>
     <Name>rancheros</Name>
-    <OperatingSystemSection ovf:id="80" ovf:version="7" vmw:osType="rhel7_64Guest">
+    <OperatingSystemSection ovf:id="80" ovf:version="7" vmw:osType="other4xLinux64Guest">
       <Info>The kind of installed guest operating system</Info>
     </OperatingSystemSection>
     <VirtualHardwareSection>
@@ -28,7 +28,7 @@
         <vssd:ElementName>Virtual Hardware Family</vssd:ElementName>
         <vssd:InstanceID>0</vssd:InstanceID>
         <vssd:VirtualSystemIdentifier>rancheros</vssd:VirtualSystemIdentifier>
-        <vssd:VirtualSystemType>vmx-15</vssd:VirtualSystemType>
+        <vssd:VirtualSystemType>vmx-14</vssd:VirtualSystemType>
       </System>
       <Item>
         <rasd:AllocationUnits>hertz * 10^6</rasd:AllocationUnits>
@@ -49,35 +49,35 @@
       <Item>
         <rasd:Address>0</rasd:Address>
         <rasd:Description>SCSI Controller</rasd:Description>
-        <rasd:ElementName>scsiController0</rasd:ElementName>
+        <rasd:ElementName>SCSI Controller 0</rasd:ElementName>
         <rasd:InstanceID>3</rasd:InstanceID>
         <rasd:ResourceSubType>lsilogic</rasd:ResourceSubType>
         <rasd:ResourceType>6</rasd:ResourceType>
       </Item>
       <Item>
         <rasd:AddressOnParent>0</rasd:AddressOnParent>
-        <rasd:ElementName>disk0</rasd:ElementName>
+        <rasd:ElementName>Hard disk 0</rasd:ElementName>
         <rasd:HostResource>ovf:/disk/vmdisk1</rasd:HostResource>
         <rasd:InstanceID>4</rasd:InstanceID>
         <rasd:Parent>3</rasd:Parent>
         <rasd:ResourceType>17</rasd:ResourceType>
-        <vmw:Config ovf:required="false" vmw:key="connectable.allowGuestControl" vmw:value="false"/>
+        <vmw:Config ovf:required="false" vmw:key="backing.writeThrough" vmw:value="false"/>
       </Item>
       <Item>
         <rasd:AddressOnParent>1</rasd:AddressOnParent>
-        <rasd:ElementName>disk1</rasd:ElementName>
+        <rasd:ElementName>Hard disk 1</rasd:ElementName>
         <rasd:HostResource>ovf:/disk/vmdisk2</rasd:HostResource>
         <rasd:InstanceID>5</rasd:InstanceID>
         <rasd:Parent>3</rasd:Parent>
         <rasd:ResourceType>17</rasd:ResourceType>
-        <vmw:Config ovf:required="false" vmw:key="connectable.allowGuestControl" vmw:value="false"/>
+        <vmw:Config ovf:required="false" vmw:key="backing.writeThrough" vmw:value="false"/>
       </Item>
       <Item>
         <rasd:AddressOnParent>2</rasd:AddressOnParent>
         <rasd:AutomaticAllocation>true</rasd:AutomaticAllocation>
         <rasd:Connection>VM Network</rasd:Connection>
         <rasd:Description>E1000 ethernet adapter on "VM Network"</rasd:Description>
-        <rasd:ElementName>ethernet0</rasd:ElementName>
+        <rasd:ElementName>Network adapter 0</rasd:ElementName>
         <rasd:InstanceID>6</rasd:InstanceID>
         <rasd:ResourceSubType>E1000</rasd:ResourceSubType>
         <rasd:ResourceType>10</rasd:ResourceType>
@@ -91,8 +91,9 @@
         <rasd:ResourceSubType>vmware.vmci</rasd:ResourceSubType>
         <rasd:ResourceType>1</rasd:ResourceType>
       </Item>
-      <vmw:ExtraConfig ovf:required="false" vmw:key="guestinfo.cloud-init.config.url" vmw:value="https://rojter.tech/coreos/cloud-config.yml"/>
-      <vmw:ExtraConfig ovf:required="false" vmw:key="guestinfo.cloud-init.data.encodingl" vmw:value=""/>
+      <vmw:ExtraConfig ovf:required="false" vmw:key="guestinfo.hostname" vmw:value="rancher"/>
+      <vmw:ExtraConfig ovf:required="false" vmw:key="guestinfo.cloud-init.config.url" vmw:value="https://raw.githubusercontent.com/rojter-tech/rancheros/master/cloud-config.yml"/>
+      <vmw:ExtraConfig ovf:required="false" vmw:key="guestinfo.cloud-init.data.encoding" vmw:value=""/>
     </VirtualHardwareSection>
     <ProductSection>
       <Info>Information about the installed software</Info>
@@ -100,7 +101,12 @@
       <Vendor>rancheros</Vendor>
       <Version>1.5.5</Version>
       <Property ovf:userConfigurable="true" ovf:type="string"
-                ovf:key="guestinfo.cloud-init.config.url" ovf:value="https://rojter.tech/coreos/cloud-config.yml">
+                ovf:key="guestinfo.hostname" ovf:value="rancher">
+        <Label>VM hostname</Label>
+        <Description>Hostname for this VM</Description>
+      </Property>
+      <Property ovf:userConfigurable="true" ovf:type="string"
+                ovf:key="guestinfo.cloud-init.config.url" ovf:value="https://raw.githubusercontent.com/rojter-tech/rancheros/master/cloud-config.yml">
         <Label>cloud-config.yml url</Label>
         <Description>Cloud Inititial Configuration URL</Description>
       </Property>

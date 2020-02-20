@@ -1,13 +1,10 @@
 #cloud-config
-hostname: ranchermanager
 mounts:
 - - /dev/sdb1
   - /var/dockerdata
   - ext4
   - ""
 rancher:
-  docker:
-    tls: true
   environment:
     EXTRA_CMDLINE: /init
   network:
@@ -15,9 +12,9 @@ rancher:
       nameservers:
       - 192168.10.100
       - 192.168.10.5
+      - 1.1.1.1
       - 8.8.8.8
       - 8.8.4.4
-      - 1.1.1.1
   services_include:
     open-vm-tools: true
 ssh_authorized_keys:
